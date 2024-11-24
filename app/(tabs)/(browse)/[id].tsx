@@ -15,7 +15,6 @@ export default function CharacterDetailsScreen() {
     
     const fetchCharacter = async () => {
       try {
-        console.log(`${API_URL}/${id}`);
         const response = await axios.get(`${API_URL}/${id}`);
         setCharacter(response.data.data.attributes);   
       } catch (error) {

@@ -25,18 +25,12 @@ export default function CharacterListScreen() {
   const fetchCharacters = useCallback(async () => {
     if (loading || !hasMore) return;
 
-    console.log("Fetching");
-
     setLoading(true);
 
     const filterQuery = query ? `&filter[name_cont]=${query}` : '';
     const API_URL = `https://api.potterdb.com/v1/characters?page[number]=${page}&page[size]=20${filterQuery}`;
 
-    console.log(API_URL);
-
-    try {
-      console.log(page);
-      
+    try {   
       const response = await axios.get(API_URL);
       const newCharacters = response.data.data || [];
 
@@ -57,9 +51,7 @@ export default function CharacterListScreen() {
   }, [loading, hasMore, page, query]);
 
   useEffect(() => {
-    if (query !== lastQuery) {
-      console.log("Brur");
-      
+    if (query !== lastQuery) {  
       setCharacters([]);
       setPage(0);
       setHasMore(true);
